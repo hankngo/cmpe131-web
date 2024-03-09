@@ -20,34 +20,59 @@
             font-size: 24px;
             margin-top: 20px;
         }
+        .blue {
+            color: blue;
+        }
+        .red {
+            color: red;
+        }
+        #login {
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
     <h1>Online Multiplayer Tic-Tac-Toe</h1>
-    <div class="board">
-        <button onclick="makeMove(0)" id="0"></button>
-        <button onclick="makeMove(1)" id="1"></button>
-        <button onclick="makeMove(2)" id="2"></button>
-        <br>
-        <button onclick="makeMove(3)" id="3"></button>
-        <button onclick="makeMove(4)" id="4"></button>
-        <button onclick="makeMove(5)" id="5"></button>
-        <br>
-        <button onclick="makeMove(6)" id="6"></button>
-        <button onclick="makeMove(7)" id="7"></button>
-        <button onclick="makeMove(8)" id="8"></button>
+    <div id="login">
+        <input type="text" id="playerName" placeholder="Enter your name">
+        <button onclick="joinGame()">Join Game</button>
     </div>
-    <div id="result"></div>
+    <div id="game" style="display: none;">
+        <div class="board">
+            <button onclick="makeMove(0)" id="0"></button>
+            <button onclick="makeMove(1)" id="1"></button>
+            <button onclick="makeMove(2)" id="2"></button>
+            <br>
+            <button onclick="makeMove(3)" id="3"></button>
+            <button onclick="makeMove(4)" id="4"></button>
+            <button onclick="makeMove(5)" id="5"></button>
+            <br>
+            <button onclick="makeMove(6)" id="6"></button>
+            <button onclick="makeMove(7)" id="7"></button>
+            <button onclick="makeMove(8)" id="8"></button>
+        </div>
+        <div id="result"></div>
+    </div>
 
     <script>
         let board = Array(9).fill('');
         let currentPlayer = 'X';
         let gameEnded = false;
+        let playerName = '';
+
+        function joinGame() {
+            playerName = document.getElementById('playerName').value;
+            if (playerName.trim() !== '') {
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('game').style.display = 'block';
+            }
+        }
 
         function makeMove(index) {
             if (board[index] === '' && !gameEnded) {
                 board[index] = currentPlayer;
                 document.getElementById(index.toString()).innerText = currentPlayer;
+                document.getElementById(index.toString()).classList.add(currentPlayer === 'X' ? 'blue' : 'red');
                 checkGameResult();
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             }
