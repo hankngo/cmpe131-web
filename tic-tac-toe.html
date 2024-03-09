@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Multiplayer Tic-Tac-Toe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .board {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .board button {
+            width: 80px;
+            height: 80px;
+            font-size: 24px;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Multiplayer Tic-Tac-Toe</h1>
+    <div class="board">
+        <button onclick="makeMove(0)" id="0"></button>
+        <button onclick="makeMove(1)" id="1"></button>
+        <button onclick="makeMove(2)" id="2"></button>
+        <br>
+        <button onclick="makeMove(3)" id="3"></button>
+        <button onclick="makeMove(4)" id="4"></button>
+        <button onclick="makeMove(5)" id="5"></button>
+        <br>
+        <button onclick="makeMove(6)" id="6"></button>
+        <button onclick="makeMove(7)" id="7"></button>
+        <button onclick="makeMove(8)" id="8"></button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        let board = Array(9).fill('');
+        let currentPlayer = 'X';
+        let gameEnded = false;
+
+        function makeMove(index) {
+            if (board[index] === '' && !gameEnded) {
+                board[index] = currentPlayer;
+                document.getElementById(index.toString()).innerText = currentPlayer;
+                checkGameResult();
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        }
+
+        function checkGameResult() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6] // diagonals
+            ];
+
+            for (let pattern of winPatterns) {
+                if (board[pattern[0]] !== '' && board[pattern[0]] === board[pattern[1]] && board[pattern[1]] === board[pattern[2]]) {
+                    document.getElementById('result').innerText = `${currentPlayer} wins!`;
+                    gameEnded = true;
+                    return;
+                }
+            }
+
+            if (!board.includes('')) {
+                document.getElementById('result').innerText = "It's a draw!";
+                gameEnded = true;
+                return;
+            }
+        }
+    </script>
+</body>
+</html>
