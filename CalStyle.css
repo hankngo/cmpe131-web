@@ -1,16 +1,22 @@
-#calendar {
+body {
   font-family: Arial, sans-serif;
-  border: 1px solid #ccc;
+  margin: 20px;
+}
+
+#calendar {
   max-width: 300px;
   margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   background-color: #f0f0f0;
+  padding: 10px;
 }
 
 .days {
@@ -21,17 +27,17 @@
 
 .day {
   padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+
+.day:hover {
+  background-color: #f0f0f0;
 }
 
 .selected {
   background-color: #007bff;
-  color: #fff;
-}
-.day:hover {
-  background-color: #f0f0f0;
-  cursor: pointer;
+  color: white;
 }
 
 #eventDisplay {
@@ -39,9 +45,5 @@
   padding: 10px;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
-}
-
-.hasEvent {
-  background-color: #007bff;
-  color: #fff;
+  display: none;
 }
