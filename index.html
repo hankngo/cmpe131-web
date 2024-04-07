@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Williamston, MI - Official Government Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="/" class="navbar-logo">Williamston, MI</a>
+        <div class="navbar-menu">
+          <div class="navbar-item">
+            <a href="/government">Government</a>
+            <div class="dropdown-content">
+              <a href="/departments">Departments</a>
+              <a href="/officials">Officials</a>
+              <!-- More dropdown items -->
+            </div>
+          </div>
+          <a href="/services" class="navbar-item">Services</a>
+          <a href="/community" class="navbar-item">Community</a>
+          <!-- More navbar items -->
+        </div>
+      </div>
+    </nav>
+
+    <!-- Calendar -->
+    <div id="calendar">
+        <div class="header">
+            <button id="prevBtn">&lt;</button>
+            <div id="monthYear"></div>
+            <button id="nextBtn">&gt;</button>
+        </div>
+        <div class="days"></div>
+    </div>
+
+    <!-- Link to External JavaScript Files -->
+    <script src="navigation.js"></script>
+    <script src="calendar.js"></script>
+</body>
+</html>
