@@ -29,21 +29,41 @@ body {
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  position: relative; /* To position the events dropdown correctly */
 }
 
-.day:hover {
-  background-color: #f0f0f0;
-}
-
-.selected {
-  background-color: #007bff;
-  color: white;
-}
-
-#eventDisplay {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+/* Hide the events by default and show them on day hover */
+.events-dropdown {
   display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%; /* Position the dropdown below the day cell */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 100; /* To ensure it stacks on top of other elements */
+  min-width: 140px; /* Minimum width of the dropdown */
+  white-space: nowrap; /* Prevent text from wrapping */
+  padding: 5px;
+  border-radius: 4px; /* Optional: for rounded corners */
+  border: 1px solid #ccc; /* Match the border with day cells */
+}
+
+.events-dropdown ul {
+  padding-left: 0; /* Removes default padding */
+  margin: 0;
+  list-style-type: none; /* Removes default list styling */
+}
+
+.events-dropdown li {
+  padding: 2px 5px; /* Reduced padding for each event */
+  border-bottom: 1px solid #ccc;
+}
+
+.events-dropdown li:last-child {
+  border-bottom: none;
+}
+
+.day:hover .events-dropdown {
+  display: block; /* Show events on hover */
 }
