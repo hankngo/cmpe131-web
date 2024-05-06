@@ -1,146 +1,106 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0; /* Changed from 20px to 0 to reset the body margin */
-  background: #fff;
-}
-
-/* Navigation bar styling */
-.navbar {
-  background-color: #f0f0f0; /* Or any other color you want */
-  overflow: hidden;
-}
-
-.navbar a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Dropdown container - needed to position the dropdown content */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-/* Dropdown button */
-.dropbtn {
-  border: none;
-  outline: none;
-  color: black;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
-}
-
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #90ee90; /* Light green background */
-  color: #333; /* Darker text for better visibility */
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Show the dropdown menu on hover */
-.navbar-item:hover .dropdown-content {
-  display: block;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Calendar Styling */
-#calendar {
-  max-width: 300px;
-  margin: 0 auto;
-  border: 1px solid #ccc;
+.calendar-container {
+  width: 330px; /* Adjusted width */
+  margin: auto;
+  padding: 0;
+  background-color: #068d25; /* Green background */
   border-radius: 5px;
-  overflow: hidden;
+}
+
+#calendar {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
 .header {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #068d25;
+  color: white;
+}
+
+.month-nav {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f0f0f0;
-  padding: 10px;
+  width: 100%;
+  padding: 5px 8px;
 }
 
-.days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
+.month-year {
+  font-size: 24px; /* Adjusted font size for better visibility */
 }
 
-.day {
+.week-days {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #068d25; /* Green background for the days of the week */
+  color: white;
+}
+
+.week-days div {
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+}
+
+#calendar-body {
+  background-color: #28A745; /* Dark green background for the grid */
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px; /* Increased spacing between cells */
+  box-sizing: border-box;
+}
+
+#calendar-body td {
+  background-color: #fff; /* White background for each cell */
+  color: black; /* Black text for readability */
   padding: 10px;
   text-align: center;
+  border-radius: 5px; /* Rounded corners for each cell */
+  position: relative; /* Ensures proper positioning for tooltips */
+}
+
+#calendar-body td.not-current-month {
+  color: #888888; /* Light grey for non-current month days */
+  background-color: #f0f0f0; /* Different background to distinguish */
+}
+
+#calendar-body td:hover {
+  background-color: #DDE; /* Lighter grey when hovering over date cells */
   cursor: pointer;
-  position: relative; /* To position the events dropdown correctly */
 }
 
-/* Hide the events by default and show them on day hover */
-.events-dropdown {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 100%; /* Position the dropdown below the day cell */
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 100; /* To ensure it stacks on top of other elements */
-  min-width: 140px; /* Minimum width of the dropdown */
-  white-space: nowrap; /* Prevent text from wrapping */
-  padding: 5px;
-  border-radius: 4px; /* Optional: for rounded corners */
-  border: 1px solid #ccc; /* Match the border with day cells */
+.prev, .next {
+  font-size: 18px;
+  cursor: pointer;
+  color: white; /* Ensure arrows are white for visibility */
 }
 
-.events-dropdown ul {
-  padding-left: 0; /* Removes default padding */
-  margin: 0;
-  list-style-type: none; /* Removes default list styling */
+.bg-info { /* Highlight for today's date */
+  background-color: #FFC107; /* Bright yellow highlight */
+  color: black; /* Black text for contrast */
 }
 
-.events-dropdown li {
-  padding: 2px 5px; /* Reduced padding for each event */
-  border-bottom: 1px solid #ccc;
+.has-event span {
+    text-decoration: underline;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
 }
 
-.events-dropdown li:last-child {
-  border-bottom: none;
-}
-
-.day:hover .events-dropdown {
-  display: block; /* Show events on hover */
+.has-event span:hover::after {
+    content: attr(title);
+    position: absolute;
+    white-space: nowrap;
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
